@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  app:
+    image: nestjs-lambda:latest
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003

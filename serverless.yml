@@ -1,0 +1,36 @@
+service: nestJS-app
+
+provider:
+  name: aws
+  region: us-west-1
+  profile: myDonut
+  stage: prod
+  runtime: nodejs18.x
+  stackName: my-delicious-donut-stack
+  ecr:
+    images:
+      nestJS_app_image:
+        # uri: ecr uri
+        path: ./
+package:
+  excludeDevDependencies: true
+  individually: true
+  exclude:
+    - __tests__/**
+    - .gitignore
+    - package-lock.json
+    - .git/**
+functions:
+  hello:
+    image:
+      name: nestJS_app_image
+      command:
+          - dist/lambda.handler
+      entryPoint:
+        - '/lambda-entrypoint.sh'
+      # timeout: 25
+      # memorySize: 512
+    events:
+      - http:
+          method: any
+          path: /{any+}
