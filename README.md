@@ -23,7 +23,11 @@ These packages are necessary for your application to interface correctly with AW
 
 ## Step 2: Prepare Your NestJS Application
 
-Ensure your NestJS application is ready for deployment. It should be tested and working locally.
+- Ensure your NestJS application is ready for deployment. It should be tested and working locally.
+- Make sure your TS config is setup correctly. You will need these attributes: 
+  - "module": "commonjs",
+  - "esModuleInterop": true,
+  - "target": "es2017" // or es2020
 
 ## Step 3: Create a Lambda Handler (lambda.ts)
 Before deploying, you need to create a Lambda handler file in your NestJS application. This handler will bootstrap your NestJS app and enable it to communicate with AWS Lambda through the aws-serverless-express library.
@@ -196,3 +200,6 @@ This command triggers several actions in the background to set up your applicati
 
 - Modify the Dockerfile and serverless.yml as needed to suit your project's requirements.
 - Remember to include any environment variables or additional configurations required by your application.
+
+## Deployment Automation
+Leverage the power of CI/CD by setting up an automated deployment pipeline with GitHub Actions or a tool of your choice. This will streamline your deployment process, ensuring consistent and reliable delivery of your latest builds to AWS Lambda.
